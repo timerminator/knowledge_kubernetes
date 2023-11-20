@@ -1,0 +1,39 @@
+users:
+  - name: Oleg
+    admin: yes
+    age: 32
+    title: devops
+    skills:
+    - git:
+      level: 5
+      description: |
+        Описание навыка 1.
+        Хороший навык
+    - docker:
+      level: 6
+      description: |
+        Описание навыка 2.
+        Хороший навык
+    - kubernetes:
+      level: 4
+      description: "Описание навыка 3. Хороший навык"
+    address: "Moskow, Red Square, 1"
+    pets: [dog, cat]
+  
+  - name: Olga
+    admin: no
+    age: 25
+    title: analyst
+    skills:
+    - sql:
+      level: 4
+      description: |
+        Описание навыка 1.
+        Хороший навык
+    - python:
+      level: 4
+      description: |
+        Описание навыка 2.
+        Хороший навык
+    address: "Ekaterinburg, Lenina str., 99"
+    pets: cat
