@@ -16,12 +16,12 @@ spec:
       - name: rabbitmq
         image: rabbitmq:3.12.10
         env:
-          - name: SEED_USERNAME
+          - name: RABBITMQ_DEFAULT_USER
             valueFrom:
               secretKeyRef:
                 name: rabbitmq-secret
                 key: SEED_USERNAME
-          - name: SEED_USER_PASSWORD
+          - name: RABBITMQ_DEFAULT_PASS
             valueFrom:
               secretKeyRef:
                 name: rabbitmq-secret
