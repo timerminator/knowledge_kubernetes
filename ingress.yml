@@ -1,15 +1,30 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: conv-app-ingress
-  annotations:
-    nginx.ingress.kubernetes.io/add-base-url: "true"
+  name: short-app-ingress
   labels:
-    name: conv-app-ingress
+    name: short-app-ingress
 spec:
   ingressClassName: nginx
   rules:
-  - host: conv.test
+  - host: short-app.test
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: short-app-clusterip
+            port: 
+              number: 80
+      - pathType: Prefix
+        path: "/api"
+        backend:
+          service:
+            name: short-api-clusterip
+            port: 
+              number: 3000
+  - host: conv-app.test
     http:
       paths:
       - pathType: Prefix
@@ -19,3 +34,10 @@ spec:
             name: conv-app-clusterip
             port: 
               number: 80
+      - pathType: Prefix
+        path: "/api"
+        backend:
+          service:
+            name: conv-api-clusterip
+            port: 
+              number: 3000
