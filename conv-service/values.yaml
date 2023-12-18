@@ -1,0 +1,8 @@
+app:
+  name: conv-app
+  replicas: 1
+  image: antonlarichev/conv-app:1.2
+  limits:
+    memory: "256Mi"
+    cpu: "100m"
+  port: 80
