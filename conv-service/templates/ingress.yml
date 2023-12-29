@@ -21,6 +21,13 @@ spec:
         path: "/api"
         backend:
           service:
-            name: conv-api-clusterip
+            name: {{ .Values.api.name }}-clusterip
             port: 
-              number: 3000
+              number: {{ .Values.api.port }}
+      - pathType: Prefix
+        path: "/uploads"
+        backend:
+          service:
+            name: {{ .Values.api.name }}-clusterip
+            port: 
+              number: {{ .Values.api.port }}

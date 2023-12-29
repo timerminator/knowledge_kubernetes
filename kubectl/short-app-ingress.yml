@@ -1,0 +1,26 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: short-app-ingress
+  labels:
+    name: short-app-ingress
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: short-app.test
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: short-app-clusterip
+            port: 
+              number: 80
+      - pathType: Prefix
+        path: "/api"
+        backend:
+          service:
+            name: short-api-clusterip
+            port: 
+              number: 3000
