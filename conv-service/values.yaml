@@ -3,6 +3,48 @@ app:
   replicas: 1
   image: antonlarichev/conv-app:1.2
   limits:
+    memory: "512Mi"
+    cpu: "200m"
+  port: 80
+  envs:
+    - VITE_DOMAIN
+
+api:
+  name: conv-api
+  replicas: 1
+  image: antonlarichev/conv-api:1.0
+  limits:
+    memory: "512Mi"
+    cpu: "200m"
+  port: 3000
+  envs:
+    - AMQP_EXCHANGE
+    - AMQP_USER
+    - AMQP_PASSWORD
+    - AMQP_HOSTNAME
+
+service:
+  name: conv-service
+  replicas: 1
+  image: antonlarichev/conv-service:1.0
+  port: 3000
+  limits:
     memory: "256Mi"
     cpu: "100m"
-  port: 80
+  envs:
+    - AMQP_EXCHANGE
+    - AMQP_USER
+    - AMQP_PASSWORD
+    - AMQP_HOSTNAME
+    - AMQP_QUEUE
+
+rabbitmq:
+  name: rabbitmq
+  port: 5672
+  image: rabbitmq:3.12.10
+  limits:
+    memory: "512Mi"
+    cpu: "300m"
+  envs:
+    - RABBITMQ_DEFAULT_USER
+    - RABBITMQ_DEFAULT_PASS

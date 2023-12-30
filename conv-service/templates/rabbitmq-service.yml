@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Values.rabbitmq.name }}-clusterip
+spec:
+  selector:
+    app: {{ .Values.rabbitmq.name }}
+  ports:
+  - port: {{ .Values.rabbitmq.port }}
+    protocol: TCP

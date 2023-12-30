@@ -3,4 +3,4 @@ kind: ConfigMap
 metadata:
   name: {{ .Values.app.name }}-config
 data:
-  domain_name: {{ .Values.app.name }}.test
+  domain_name:  http://{{ .Values.app.name }}.test

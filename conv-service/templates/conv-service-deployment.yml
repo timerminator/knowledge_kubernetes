@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.service.name }}-deployment
+spec:
+  replicas: {{ .Values.service.replicas }}
+  selector:
+    matchLabels:
+      app: {{ .Values.service.name }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.service.name }}
+    spec:
+      containers:
+      - name: {{ .Values.service.name }}
+        image: {{ .Values.service.image }}
+        env:
+          {{- range .Values.service.envs }}
+          {{- $data := dict "name" $.Values.rabbitmq.name "env" . }}
+          {{- include "env.template" $data | indent 8 }}
+          {{- end }}
+        resources:
+          limits: {{ .Values.service.limits | toYaml | nindent 12 }}
+        ports:
+        - containerPort: {{ .Values.service.port }}
